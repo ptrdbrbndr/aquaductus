@@ -1,0 +1,1695 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aquaductus — Zeilen, coaching en teambuilding vanuit Jachthaven 't Raboes in Harderwijk. Vaar mee op de Randmeren.">
+    <meta property="og:title" content="Aquaductus — Vaar mee op de Aquaductus">
+    <meta property="og:description" content="Recreatief zeilen, coachingssessies en teambuilding op een klassieke Randmeer-zeilboot vanuit Harderwijk.">
+    <meta property="og:type" content="website">
+    <title>Aquaductus — Vaar mee op de Aquaductus</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* ===== CSS Custom Properties ===== */
+        :root {
+            --color-mist: #E8EDF0;
+            --color-water: #4A7FA5;
+            --color-water-deep: #2C5F7A;
+            --color-sand: #C4A882;
+            --color-sand-light: #F5EFE6;
+            --color-text: #2D3748;
+            --color-text-light: #718096;
+            --color-white: #FFFFFF;
+            --font-display: 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'Outfit', system-ui, sans-serif;
+            --nav-height: 72px;
+        }
+
+        /* ===== Reset & Base ===== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: var(--nav-height);
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-text);
+            background-color: var(--color-mist);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-display);
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        /* ===== Scroll Reveal ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== Navigation ===== */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--nav-height);
+            z-index: 1000;
+            background: rgba(232, 237, 240, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(74, 127, 165, 0.1);
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .nav.scrolled {
+            background: rgba(232, 237, 240, 0.92);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .nav .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .nav-logo {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--color-water-deep);
+            letter-spacing: 0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            font-weight: 400;
+            color: var(--color-text);
+            position: relative;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-water);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a:focus {
+            color: var(--color-water);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a:focus::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--color-text);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* ===== Hero ===== */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+            background: linear-gradient(160deg, var(--color-water-deep) 0%, var(--color-water) 40%, #6BA3C7 70%, var(--color-mist) 100%);
+        }
+
+        .hero-waves {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .hero-waves svg {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 200%;
+            height: 100%;
+        }
+
+        .wave-1 {
+            animation: waveMove 8s ease-in-out infinite;
+            opacity: 0.3;
+        }
+
+        .wave-2 {
+            animation: waveMove 6s ease-in-out infinite reverse;
+            opacity: 0.2;
+        }
+
+        .wave-3 {
+            animation: waveMove 10s ease-in-out infinite;
+            opacity: 0.15;
+        }
+
+        @keyframes waveMove {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(-25%); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.4rem, 6vw, 4.5rem);
+            color: var(--color-white);
+            margin-bottom: 16px;
+            font-weight: 700;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .hero-sub {
+            font-size: clamp(1rem, 2.5vw, 1.35rem);
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 520px;
+            margin: 0 auto 40px;
+            font-weight: 300;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 36px;
+            border-radius: 50px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+        }
+
+        .btn-primary {
+            background: var(--color-sand);
+            color: var(--color-white);
+            box-shadow: 0 4px 15px rgba(196, 168, 130, 0.4);
+        }
+
+        .btn-primary:hover,
+        .btn-primary:focus {
+            background: #b89a72;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(196, 168, 130, 0.5);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--color-water-deep);
+            border: 2px solid var(--color-water);
+            backdrop-filter: blur(4px);
+        }
+
+        .btn-secondary:hover,
+        .btn-secondary:focus {
+            background: var(--color-water);
+            color: var(--color-white);
+            transform: translateY(-2px);
+        }
+
+        /* Decorative ripple on hero */
+        .hero-ripple {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 600px;
+            height: 600px;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            animation: ripple 6s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .hero-ripple:nth-child(2) {
+            width: 800px;
+            height: 800px;
+            animation-delay: 2s;
+        }
+
+        .hero-ripple:nth-child(3) {
+            width: 1000px;
+            height: 1000px;
+            animation-delay: 4s;
+        }
+
+        @keyframes ripple {
+            0%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+            50% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+
+        /* ===== Over Section ===== */
+        .over {
+            background: var(--color-white);
+        }
+
+        .over-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .over-text h2 {
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            color: var(--color-water-deep);
+            margin-bottom: 20px;
+        }
+
+        .over-text p {
+            margin-bottom: 16px;
+            color: var(--color-text-light);
+            font-size: 1.05rem;
+        }
+
+        .over-text .philosophy {
+            font-family: var(--font-display);
+            font-style: italic;
+            font-size: 1.25rem;
+            color: var(--color-water);
+            border-left: 3px solid var(--color-sand);
+            padding-left: 20px;
+            margin-top: 24px;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            background: linear-gradient(135deg, var(--color-water) 0%, var(--color-water-deep) 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .image-placeholder svg {
+            width: 80px;
+            height: 80px;
+            opacity: 0.3;
+        }
+
+        .image-placeholder img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 60%;
+            border-radius: 16px;
+        }
+
+        /* ===== Diensten Section ===== */
+        .diensten {
+            background: var(--color-sand-light);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            color: var(--color-water-deep);
+            margin-bottom: 12px;
+        }
+
+        .section-header p {
+            color: var(--color-text-light);
+            font-size: 1.05rem;
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        .diensten-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .dienst-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .dienst-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 40px rgba(74, 127, 165, 0.12);
+        }
+
+        .dienst-icon {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .dienst-card h3 {
+            font-size: 1.5rem;
+            color: var(--color-water-deep);
+            margin-bottom: 12px;
+        }
+
+        .dienst-card p {
+            color: var(--color-text-light);
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+        }
+
+        .dienst-meta {
+            font-size: 0.88rem;
+            color: var(--color-text-light);
+            margin-bottom: 4px;
+        }
+
+        .dienst-prijs {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            color: var(--color-sand);
+            font-weight: 600;
+            margin: 16px 0 24px;
+        }
+
+        .dienst-card .btn {
+            font-size: 0.9rem;
+            padding: 10px 28px;
+        }
+
+        /* ===== Galerij Section ===== */
+        .galerij {
+            background: var(--color-white);
+        }
+
+        .galerij-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .galerij-item {
+            position: relative;
+            aspect-ratio: 4 / 3;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            background: linear-gradient(135deg, var(--color-water) 0%, var(--color-water-deep) 100%);
+        }
+
+        .galerij-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .galerij-item .placeholder-icon {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.25);
+            font-size: 2.5rem;
+        }
+
+        .galerij-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(44, 95, 122, 0);
+            transition: background 0.3s ease;
+        }
+
+        .galerij-item:hover::after {
+            background: rgba(44, 95, 122, 0.3);
+        }
+
+        .galerij-item:hover img {
+            transform: scale(1.08);
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            background: rgba(0, 0, 0, 0.85);
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            cursor: pointer;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 85vh;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 8px;
+            line-height: 1;
+        }
+
+        .lightbox-placeholder {
+            width: 60vw;
+            max-width: 800px;
+            aspect-ratio: 4 / 3;
+            background: linear-gradient(135deg, var(--color-water) 0%, var(--color-water-deep) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 4rem;
+        }
+
+        /* ===== Kalender Section ===== */
+        .kalender {
+            background: var(--color-sand-light);
+        }
+
+        .kalender-wrapper {
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--color-white);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .kalender-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+        }
+
+        .kalender-header h3 {
+            font-size: 1.4rem;
+            color: var(--color-water-deep);
+        }
+
+        .kalender-nav {
+            background: none;
+            border: 2px solid var(--color-water);
+            color: var(--color-water);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        .kalender-nav:hover {
+            background: var(--color-water);
+            color: var(--color-white);
+        }
+
+        .kalender-days-header {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .kalender-days-header span {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--color-text-light);
+            padding: 8px 0;
+        }
+
+        .kalender-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+        }
+
+        .kalender-day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 400;
+            cursor: default;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .kalender-day.empty {
+            background: transparent;
+        }
+
+        .kalender-day.beschikbaar {
+            background: rgba(72, 187, 120, 0.12);
+            color: #276749;
+            cursor: pointer;
+        }
+
+        .kalender-day.beschikbaar:hover {
+            background: rgba(72, 187, 120, 0.25);
+            transform: scale(1.1);
+        }
+
+        .kalender-day.vol {
+            background: rgba(245, 101, 101, 0.12);
+            color: #c53030;
+        }
+
+        .kalender-day.aanvraag {
+            background: rgba(236, 201, 75, 0.15);
+            color: #975a16;
+            cursor: pointer;
+        }
+
+        .kalender-day.aanvraag:hover {
+            background: rgba(236, 201, 75, 0.3);
+            transform: scale(1.1);
+        }
+
+        .kalender-day.other-month {
+            color: var(--color-text-light);
+            opacity: 0.4;
+        }
+
+        .kalender-legenda {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .kalender-legenda span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.85rem;
+            color: var(--color-text-light);
+        }
+
+        .legenda-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .legenda-dot.groen { background: rgba(72, 187, 120, 0.5); }
+        .legenda-dot.rood { background: rgba(245, 101, 101, 0.5); }
+        .legenda-dot.geel { background: rgba(236, 201, 75, 0.5); }
+
+        /* ===== Locatie Section ===== */
+        .locatie {
+            background: var(--color-white);
+        }
+
+        .locatie-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .locatie-info h2 {
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            color: var(--color-water-deep);
+            margin-bottom: 20px;
+        }
+
+        .locatie-info h3 {
+            font-size: 1.15rem;
+            color: var(--color-water);
+            margin: 20px 0 8px;
+        }
+
+        .locatie-info p,
+        .locatie-info li {
+            color: var(--color-text-light);
+            font-size: 0.95rem;
+            margin-bottom: 6px;
+        }
+
+        .locatie-info ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .locatie-info ul li::before {
+            content: '→ ';
+            color: var(--color-sand);
+        }
+
+        .map-container {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+        }
+
+        /* ===== Contact Section ===== */
+        .contact {
+            background: var(--color-sand-light);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .contact-form h2 {
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            color: var(--color-water-deep);
+            margin-bottom: 8px;
+        }
+
+        .contact-form > p {
+            color: var(--color-text-light);
+            margin-bottom: 28px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 6px;
+            color: var(--color-text);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid rgba(74, 127, 165, 0.2);
+            border-radius: 10px;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            color: var(--color-text);
+            background: var(--color-white);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--color-water);
+            box-shadow: 0 0 0 3px rgba(74, 127, 165, 0.1);
+        }
+
+        .form-group input.error,
+        .form-group select.error,
+        .form-group textarea.error {
+            border-color: #e53e3e;
+        }
+
+        .form-group .error-msg {
+            font-size: 0.82rem;
+            color: #e53e3e;
+            margin-top: 4px;
+            display: none;
+        }
+
+        .form-group .error-msg.visible {
+            display: block;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .form-success {
+            display: none;
+            background: rgba(72, 187, 120, 0.1);
+            border: 1px solid rgba(72, 187, 120, 0.3);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            color: #276749;
+        }
+
+        .form-success.visible {
+            display: block;
+        }
+
+        .contact-details {
+            padding-top: 20px;
+        }
+
+        .contact-details h3 {
+            font-size: 1.5rem;
+            color: var(--color-water-deep);
+            margin-bottom: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 18px;
+        }
+
+        .contact-item-icon {
+            width: 44px;
+            height: 44px;
+            background: rgba(74, 127, 165, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .contact-item-text {
+            font-size: 0.95rem;
+            color: var(--color-text-light);
+        }
+
+        .contact-item-text a {
+            color: var(--color-water);
+            transition: color 0.2s ease;
+        }
+
+        .contact-item-text a:hover {
+            color: var(--color-water-deep);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 28px;
+        }
+
+        .social-link {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: rgba(74, 127, 165, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+
+        .social-link:hover {
+            background: var(--color-water);
+            transform: translateY(-2px);
+        }
+
+        .social-link:hover svg {
+            fill: white;
+        }
+
+        .social-link svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--color-water);
+            transition: fill 0.2s ease;
+        }
+
+        /* ===== Footer ===== */
+        .footer {
+            background: var(--color-water-deep);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 50px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-white);
+            margin-bottom: 12px;
+        }
+
+        .footer p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .footer h4 {
+            color: var(--color-white);
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 8px;
+        }
+
+        .footer-links a {
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-sand);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 0.85rem;
+        }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 1024px) {
+            .over-grid,
+            .locatie-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .diensten-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 60px 0;
+            }
+
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: var(--nav-height);
+                left: 0;
+                right: 0;
+                background: rgba(232, 237, 240, 0.97);
+                backdrop-filter: blur(16px);
+                -webkit-backdrop-filter: blur(16px);
+                flex-direction: column;
+                align-items: center;
+                padding: 30px 0;
+                gap: 20px;
+                border-bottom: 1px solid rgba(74, 127, 165, 0.1);
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .diensten-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .galerij-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .galerij-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+
+            .kalender-wrapper {
+                padding: 20px 16px;
+            }
+        }
+    </style>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Aquaductus",
+        "description": "Zeilen, coaching en teambuilding vanuit Jachthaven 't Raboes in Harderwijk.",
+        "url": "https://aquaductus.nl",
+        "telephone": "+31-6-12345678",
+        "email": "info@aquaductus.nl",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Jachthaven 't Raboes",
+            "addressLocality": "Harderwijk",
+            "addressRegion": "Gelderland",
+            "addressCountry": "NL"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "52.3498",
+            "longitude": "5.6200"
+        },
+        "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+            "opens": "09:00",
+            "closes": "18:00"
+        }
+    }
+    </script>
+</head>
+<body>
+
+    <!-- ===== Navigation ===== -->
+    <nav class="nav" role="navigation" aria-label="Hoofdnavigatie">
+        <div class="container">
+            <a href="#" class="nav-logo" aria-label="Aquaductus — Terug naar boven">Aquaductus</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#over">Over</a></li>
+                <li><a href="#diensten">Diensten</a></li>
+                <li><a href="#kalender">Kalender</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Menu openen" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ===== Hero ===== -->
+    <section class="hero" id="hero">
+        <div class="hero-ripple"></div>
+        <div class="hero-ripple"></div>
+        <div class="hero-ripple"></div>
+        <div class="hero-waves">
+            <svg class="wave-1" viewBox="0 0 1440 200" preserveAspectRatio="none">
+                <path d="M0,100 C360,180 720,20 1080,100 C1260,140 1380,80 1440,100 L1440,200 L0,200 Z" fill="rgba(232,237,240,0.6)"/>
+            </svg>
+            <svg class="wave-2" viewBox="0 0 1440 200" preserveAspectRatio="none">
+                <path d="M0,120 C240,60 480,160 720,100 C960,40 1200,160 1440,120 L1440,200 L0,200 Z" fill="rgba(232,237,240,0.4)"/>
+            </svg>
+            <svg class="wave-3" viewBox="0 0 1440 200" preserveAspectRatio="none">
+                <path d="M0,80 C180,140 360,60 540,100 C720,140 900,60 1080,100 C1260,140 1380,80 1440,90 L1440,200 L0,200 Z" fill="rgba(232,237,240,0.8)"/>
+            </svg>
+        </div>
+        <div class="hero-content">
+            <h1>Vaar mee op de Aquaductus</h1>
+            <p class="hero-sub">Water brengt rust, perspectief en focus.</p>
+            <a href="#contact" class="btn btn-primary">Plan een tocht</a>
+        </div>
+    </section>
+
+    <main>
+
+        <!-- ===== Over de Aquaductus ===== -->
+        <section class="over" id="over">
+            <div class="container">
+                <div class="over-grid">
+                    <div class="over-text reveal">
+                        <h2>Over de Aquaductus</h2>
+                        <p>De Aquaductus is een klassieke Randmeer-zeilboot, ontworpen door E.G. van de Stadt. Vanuit Jachthaven 't Raboes in Harderwijk varen we uit over het Veluwemeer en de omliggende Randmeren.</p>
+                        <p>Of je nu komt voor een ontspannen zeiltocht, een coachingssessie of een teambuildingdag — aan boord ervaar je de kracht van het water. De wind, de stilte, het ritme van de golven: het brengt je terug bij jezelf.</p>
+                        <p class="philosophy">Op het water vallen maskers weg en ontstaat ruimte voor wat er echt toe doet.</p>
+                    </div>
+                    <div class="image-placeholder reveal">
+                        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M50 20 L15 70 L85 70 Z" stroke="rgba(255,255,255,0.5)" stroke-width="2" fill="none"/>
+                            <path d="M50 20 L50 70" stroke="rgba(255,255,255,0.5)" stroke-width="2"/>
+                            <path d="M10 75 Q30 65 50 75 Q70 85 90 75" stroke="rgba(255,255,255,0.5)" stroke-width="2" fill="none"/>
+                        </svg>
+                        <img src="images/boot.jpg" alt="Zeilboot aan de steiger met weids uitzicht over het meer" onerror="this.style.display='none'">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Diensten ===== -->
+        <section class="diensten" id="diensten">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2>Wat we bieden</h2>
+                    <p>Drie manieren om het water te ervaren — elk op eigen tempo, elk met eigen doel.</p>
+                </div>
+                <div class="diensten-grid">
+                    <div class="dienst-card reveal">
+                        <span class="dienst-icon" aria-hidden="true">⛵</span>
+                        <h3>Recreatief Zeilen</h3>
+                        <p>Ontspan op het water van de Randmeren. Geen ervaring nodig — wij regelen alles, jij geniet.</p>
+                        <p class="dienst-meta">Duur: 2–4 uur | Individueel of groep</p>
+                        <div class="dienst-prijs">Vanaf €75 p.p.</div>
+                        <a href="#contact" class="btn btn-secondary">Reserveer</a>
+                    </div>
+                    <div class="dienst-card reveal">
+                        <span class="dienst-icon" aria-hidden="true">🧭</span>
+                        <h3>Coachingssessie</h3>
+                        <p>Persoonlijke begeleiding met het water als context. Ruimte voor reflectie, inzicht en groei.</p>
+                        <p class="dienst-meta">Duur: halve of hele dag</p>
+                        <div class="dienst-prijs">Vanaf €150 p.p.</div>
+                        <a href="#contact" class="btn btn-secondary">Meer info</a>
+                    </div>
+                    <div class="dienst-card reveal">
+                        <span class="dienst-icon" aria-hidden="true">🤝</span>
+                        <h3>Teambuilding</h3>
+                        <p>Samenwerken, vertrouwen opbouwen en verbinding versterken — terwijl jullie samen zeilen.</p>
+                        <p class="dienst-meta">Op maat | Groepen van 4–12 personen</p>
+                        <div class="dienst-prijs">Op aanvraag</div>
+                        <a href="#contact" class="btn btn-secondary">Neem contact op</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Fotogalerij ===== -->
+        <section class="galerij" id="galerij">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2>Sfeerimpressie</h2>
+                    <p>Een glimp van het leven aan boord van de Aquaductus.</p>
+                </div>
+                <div class="galerij-grid reveal">
+                    <div class="galerij-item" data-img="images/foto-1.jpg">
+                        <span class="placeholder-icon" aria-hidden="true">⛵</span>
+                        <img src="images/foto-1.jpg" alt="Zeilboot op het water bij zonsondergang vanuit de lucht" onerror="this.style.display='none'">
+                    </div>
+                    <div class="galerij-item" data-img="images/foto-2.jpg">
+                        <span class="placeholder-icon" aria-hidden="true">🌊</span>
+                        <img src="images/foto-2.jpg" alt="Actief zeilen met bemanning op de Randmeren" onerror="this.style.display='none'">
+                    </div>
+                    <div class="galerij-item" data-img="images/foto-3.jpg">
+                        <span class="placeholder-icon" aria-hidden="true">☀️</span>
+                        <img src="images/foto-3.jpg" alt="Zeilboot vanuit drone perspectief bij golden hour" onerror="this.style.display='none'">
+                    </div>
+                    <div class="galerij-item" data-img="images/foto-4.jpg">
+                        <span class="placeholder-icon" aria-hidden="true">🧭</span>
+                        <img src="images/foto-4.jpg" alt="Wedstrijdzeilen met twee bemanningsleden" onerror="this.style.display='none'">
+                    </div>
+                    <div class="galerij-item" data-img="images/foto-5.jpg">
+                        <span class="placeholder-icon" aria-hidden="true">🌅</span>
+                        <img src="images/foto-5.jpg" alt="Zeilboot onder vol zeil langs de rietkraag" onerror="this.style.display='none'">
+                    </div>
+                    <div class="galerij-item" data-img="images/foto-6.jpg">
+                        <span class="placeholder-icon" aria-hidden="true">⚓</span>
+                        <img src="images/foto-6.jpg" alt="Randmeer-zeilboot afgemeerd in de jachthaven met mast en zeilen" onerror="this.style.display='none'">
+                    </div>
+                    <div class="galerij-item" data-img="images/foto-7.jpg">
+                        <span class="placeholder-icon" aria-hidden="true">🤝</span>
+                        <img src="images/foto-7.jpg" alt="Oranje Randmeer-zeilboot afgemeerd in de haven" onerror="this.style.display='none'">
+                    </div>
+                    <div class="galerij-item" data-img="images/foto-8.jpg">
+                        <span class="placeholder-icon" aria-hidden="true">🌿</span>
+                        <img src="images/foto-8.jpg" alt="Vloot zeilboten met kleurrijke spinnakers op het water" onerror="this.style.display='none'">
+                    </div>
+                    <div class="galerij-item" data-img="images/foto-9.jpg">
+                        <span class="placeholder-icon" aria-hidden="true">🏔️</span>
+                        <img src="images/foto-9.jpg" alt="Detail van het dek en tuigage van de zeilboot" onerror="this.style.display='none'">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lightbox -->
+        <div class="lightbox" id="lightbox" role="dialog" aria-label="Foto vergroten" aria-modal="true">
+            <button class="lightbox-close" aria-label="Sluiten">&times;</button>
+            <div class="lightbox-placeholder" id="lightboxContent">
+                <span>⛵</span>
+            </div>
+        </div>
+
+        <!-- ===== Kalender ===== -->
+        <section class="kalender" id="kalender">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2>Beschikbaarheid</h2>
+                    <p>Bekijk wanneer er plek is en plan direct je tocht.</p>
+                </div>
+                <div class="kalender-wrapper reveal" id="kalenderWidget">
+                    <!-- Rendered by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Locatie ===== -->
+        <section class="locatie" id="locatie">
+            <div class="container">
+                <div class="locatie-grid">
+                    <div class="locatie-info reveal">
+                        <h2>Locatie</h2>
+                        <p>We vertrekken vanuit <strong>Jachthaven 't Raboes</strong> in Harderwijk, gelegen aan het Veluwemeer — het hart van de Randmeren.</p>
+
+                        <h3>Bereikbaarheid</h3>
+                        <ul>
+                            <li><strong>Auto:</strong> Via de A28, afslag Harderwijk. Parkeren kan bij de jachthaven.</li>
+                            <li><strong>OV:</strong> Station Harderwijk (10 min fietsen) of bus tot halte Strandboulevard.</li>
+                        </ul>
+
+                        <h3>Praktische info</h3>
+                        <ul>
+                            <li>Gratis parkeren bij de jachthaven</li>
+                            <li>Meld je 15 minuten voor vertrek bij de steiger</li>
+                            <li>Neem mee: warme laag, zonnebril, sportschoenen</li>
+                            <li>Reddingsvesten zijn aan boord aanwezig</li>
+                        </ul>
+                    </div>
+                    <div class="map-container reveal">
+                        <!-- Vervang de src door je eigen Google Maps embed URL -->
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2433.8!2d5.62!3d52.35!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTLCsDIxJzAwLjAiTiA1wrAzNycxMi4wIkU!5e0!3m2!1snl!2snl!4v1"
+                            allowfullscreen=""
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"
+                            title="Locatie Jachthaven 't Raboes, Harderwijk">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Contact & Reservering ===== -->
+        <section class="contact" id="contact">
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-form reveal">
+                        <h2>Reserveer of neem contact op</h2>
+                        <p>Vul het formulier in en we nemen zo snel mogelijk contact met je op.</p>
+                        <form id="contactForm" novalidate>
+                            <div class="form-group">
+                                <label for="naam">Naam *</label>
+                                <input type="text" id="naam" name="naam" required aria-required="true" placeholder="Je volledige naam">
+                                <span class="error-msg" id="naamError">Vul je naam in.</span>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="email">E-mailadres *</label>
+                                    <input type="email" id="email" name="email" required aria-required="true" placeholder="naam@voorbeeld.nl">
+                                    <span class="error-msg" id="emailError">Vul een geldig e-mailadres in.</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="telefoon">Telefoonnummer</label>
+                                    <input type="tel" id="telefoon" name="telefoon" placeholder="06-12345678">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="dienst">Gewenste dienst *</label>
+                                    <select id="dienst" name="dienst" required aria-required="true">
+                                        <option value="">Kies een dienst...</option>
+                                        <option value="recreatief">Recreatief zeilen</option>
+                                        <option value="coaching">Coachingssessie</option>
+                                        <option value="teambuilding">Teambuilding</option>
+                                    </select>
+                                    <span class="error-msg" id="dienstError">Kies een dienst.</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="datum">Gewenste datum</label>
+                                    <input type="date" id="datum" name="datum">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="personen">Aantal personen</label>
+                                <input type="number" id="personen" name="personen" min="1" max="12" placeholder="1–12">
+                            </div>
+                            <div class="form-group">
+                                <label for="bericht">Bericht</label>
+                                <textarea id="bericht" name="bericht" rows="4" placeholder="Vertel ons over je wensen of stel een vraag..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="width:100%">Verstuur aanvraag</button>
+                        </form>
+                        <div class="form-success" id="formSuccess">
+                            <h3 style="margin-bottom:8px;color:#276749;">Bedankt voor je aanvraag!</h3>
+                            <p>We nemen zo snel mogelijk contact met je op om de details te bespreken.</p>
+                        </div>
+                    </div>
+                    <div class="contact-details reveal">
+                        <h3>Contactgegevens</h3>
+                        <div class="contact-item">
+                            <div class="contact-item-icon">📧</div>
+                            <div class="contact-item-text">
+                                <a href="mailto:info@aquaductus.nl">info@aquaductus.nl</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-item-icon">📞</div>
+                            <div class="contact-item-text">
+                                <a href="tel:+31612345678">+31 6 1234 5678</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-item-icon">📍</div>
+                            <div class="contact-item-text">
+                                Jachthaven 't Raboes<br>Harderwijk, Nederland
+                            </div>
+                        </div>
+                        <div class="social-links">
+                            <a href="#" class="social-link" aria-label="Facebook">
+                                <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                            </a>
+                            <a href="#" class="social-link" aria-label="Instagram">
+                                <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                            </a>
+                            <a href="#" class="social-link" aria-label="LinkedIn">
+                                <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===== Footer ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-logo">Aquaductus</div>
+                    <p>Zeilen, coaching en teambuilding vanuit Jachthaven 't Raboes in Harderwijk. Ervaar de kracht van het water.</p>
+                </div>
+                <div>
+                    <h4>Snelle links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#over">Over ons</a></li>
+                        <li><a href="#diensten">Diensten</a></li>
+                        <li><a href="#galerij">Galerij</a></li>
+                        <li><a href="#kalender">Kalender</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <ul class="footer-links">
+                        <li>Jachthaven 't Raboes</li>
+                        <li>Harderwijk, Nederland</li>
+                        <li><a href="mailto:info@aquaductus.nl">info@aquaductus.nl</a></li>
+                        <li><a href="tel:+31612345678">+31 6 1234 5678</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2025 Aquaductus — Jachthaven 't Raboes, Harderwijk</span>
+                <span>KVK: 12345678 | BTW: NL123456789B01</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== JavaScript ===== -->
+    <script>
+    (function() {
+        'use strict';
+
+        // ===== Navigation =====
+        const nav = document.querySelector('.nav');
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        // Scroll effect
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Hamburger toggle
+        hamburger.addEventListener('click', () => {
+            const isOpen = navLinks.classList.toggle('open');
+            hamburger.classList.toggle('active');
+            hamburger.setAttribute('aria-expanded', isOpen);
+            hamburger.setAttribute('aria-label', isOpen ? 'Menu sluiten' : 'Menu openen');
+        });
+
+        // Close mobile menu on link click
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('open');
+                hamburger.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        // ===== Scroll Reveal =====
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // ===== Lightbox =====
+        const lightbox = document.getElementById('lightbox');
+        const lightboxContent = document.getElementById('lightboxContent');
+
+        document.querySelectorAll('.galerij-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const imgSrc = item.getAttribute('data-img');
+                const img = item.querySelector('img');
+                if (img && img.style.display !== 'none') {
+                    lightboxContent.innerHTML = '<img src="' + imgSrc + '" alt="Vergroot sfeerbeeld">';
+                } else {
+                    const icon = item.querySelector('.placeholder-icon');
+                    lightboxContent.innerHTML = '<div class="lightbox-placeholder"><span>' + (icon ? icon.textContent : '⛵') + '</span></div>';
+                }
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox || e.target.classList.contains('lightbox-close')) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // ===== Kalender =====
+        const kalenderWidget = document.getElementById('kalenderWidget');
+        const maandNamen = ['Januari','Februari','Maart','April','Mei','Juni','Juli','Augustus','September','Oktober','November','December'];
+        const dagNamen = ['Ma','Di','Wo','Do','Vr','Za','Zo'];
+
+        let currentDate = new Date();
+        let currentMonth = currentDate.getMonth();
+        let currentYear = currentDate.getFullYear();
+
+        // Sample availability data (keyed by "YYYY-MM-DD")
+        function getAvailability(year, month) {
+            const data = {};
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            for (let d = 1; d <= daysInMonth; d++) {
+                const dateStr = year + '-' + String(month + 1).padStart(2, '0') + '-' + String(d).padStart(2, '0');
+                const dayOfWeek = new Date(year, month, d).getDay();
+                // Weekends mostly available, some weekdays on request, a few full
+                if (dayOfWeek === 0 || dayOfWeek === 6) {
+                    // Weekends
+                    if (d % 7 === 0) data[dateStr] = 'vol';
+                    else data[dateStr] = 'beschikbaar';
+                } else if (dayOfWeek === 3 || dayOfWeek === 5) {
+                    data[dateStr] = 'beschikbaar';
+                } else if (dayOfWeek === 2) {
+                    data[dateStr] = 'aanvraag';
+                } else if (d % 5 === 0) {
+                    data[dateStr] = 'vol';
+                } else {
+                    data[dateStr] = 'aanvraag';
+                }
+            }
+            return data;
+        }
+
+        function renderKalender() {
+            const availability = getAvailability(currentYear, currentMonth);
+            const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+            const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+            // Convert Sunday=0 to Monday-start: Mo=0, Tu=1, ..., Su=6
+            const startOffset = (firstDay + 6) % 7;
+
+            let html = '<div class="kalender-header">';
+            html += '<button class="kalender-nav" id="kalenderPrev" aria-label="Vorige maand">&larr;</button>';
+            html += '<h3>' + maandNamen[currentMonth] + ' ' + currentYear + '</h3>';
+            html += '<button class="kalender-nav" id="kalenderNext" aria-label="Volgende maand">&rarr;</button>';
+            html += '</div>';
+
+            html += '<div class="kalender-days-header">';
+            dagNamen.forEach(d => { html += '<span>' + d + '</span>'; });
+            html += '</div>';
+
+            html += '<div class="kalender-grid">';
+
+            // Empty cells before first day
+            for (let i = 0; i < startOffset; i++) {
+                html += '<div class="kalender-day empty"></div>';
+            }
+
+            for (let d = 1; d <= daysInMonth; d++) {
+                const dateStr = currentYear + '-' + String(currentMonth + 1).padStart(2, '0') + '-' + String(d).padStart(2, '0');
+                const status = availability[dateStr] || '';
+                const isClickable = status === 'beschikbaar' || status === 'aanvraag';
+                html += '<div class="kalender-day ' + status + '"' +
+                    (isClickable ? ' role="button" tabindex="0" aria-label="' + d + ' ' + maandNamen[currentMonth] + ' — ' + (status === 'beschikbaar' ? 'beschikbaar' : 'op aanvraag') + '" data-date="' + dateStr + '"' : '') +
+                    '>' + d + '</div>';
+            }
+
+            html += '</div>';
+
+            html += '<div class="kalender-legenda">';
+            html += '<span><span class="legenda-dot groen"></span> Beschikbaar</span>';
+            html += '<span><span class="legenda-dot rood"></span> Vol</span>';
+            html += '<span><span class="legenda-dot geel"></span> Op aanvraag</span>';
+            html += '</div>';
+
+            kalenderWidget.innerHTML = html;
+
+            // Navigation events
+            document.getElementById('kalenderPrev').addEventListener('click', () => {
+                currentMonth--;
+                if (currentMonth < 0) { currentMonth = 11; currentYear--; }
+                renderKalender();
+            });
+
+            document.getElementById('kalenderNext').addEventListener('click', () => {
+                currentMonth++;
+                if (currentMonth > 11) { currentMonth = 0; currentYear++; }
+                renderKalender();
+            });
+
+            // Clickable days
+            kalenderWidget.querySelectorAll('.kalender-day[data-date]').forEach(day => {
+                const handler = () => {
+                    const date = day.getAttribute('data-date');
+                    const datumInput = document.getElementById('datum');
+                    if (datumInput) datumInput.value = date;
+                    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+                };
+                day.addEventListener('click', handler);
+                day.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handler(); }
+                });
+            });
+        }
+
+        renderKalender();
+
+        // ===== Contact Form =====
+        const form = document.getElementById('contactForm');
+        const formSuccess = document.getElementById('formSuccess');
+
+        function showError(id, show) {
+            const el = document.getElementById(id);
+            const input = el.previousElementSibling;
+            if (show) {
+                el.classList.add('visible');
+                input.classList.add('error');
+            } else {
+                el.classList.remove('visible');
+                input.classList.remove('error');
+            }
+        }
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            let valid = true;
+
+            const naam = document.getElementById('naam');
+            if (!naam.value.trim()) { showError('naamError', true); valid = false; }
+            else { showError('naamError', false); }
+
+            const email = document.getElementById('email');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email.value)) { showError('emailError', true); valid = false; }
+            else { showError('emailError', false); }
+
+            const dienst = document.getElementById('dienst');
+            if (!dienst.value) { showError('dienstError', true); valid = false; }
+            else { showError('dienstError', false); }
+
+            if (valid) {
+                form.style.display = 'none';
+                formSuccess.classList.add('visible');
+            }
+        });
+
+        // Clear errors on input
+        ['naam','email','dienst'].forEach(id => {
+            document.getElementById(id).addEventListener('input', () => {
+                showError(id + 'Error', false);
+            });
+        });
+
+    })();
+    </script>
+
+</body>
+</html>
