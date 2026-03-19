@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient, createAdminClient } from '@/lib/supabase/server'
-import { resend } from '@/lib/resend'
+import { getResend } from "@/lib/resend"
 
 interface Params {
   params: Promise<{ id: string }>
@@ -25,7 +25,7 @@ export async function POST(request: NextRequest, { params }: Params) {
       .single()
 
     if (boeking?.gast_email) {
-      await resend.emails.send({
+      await getResend().emails.send({
         from: 'Aquaductus <info@aquaductus.nl>',
         to: boeking.gast_email,
         subject: 'Uw boeking bij Aquaductus is bevestigd!',

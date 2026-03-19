@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { stripe } from '@/lib/stripe'
 import { createAdminClient } from '@/lib/supabase/server'
-import { resend } from '@/lib/resend'
+import { getResend } from "@/lib/resend"
 import { ADMIN_EMAIL } from '@/lib/constants'
 
 export async function POST(request: NextRequest) {
@@ -74,7 +74,7 @@ async function verwerkBoekingBetaling(session: import('stripe').Stripe.Checkout.
 }
 
 async function stuurBevestigingsmail(email: string, boeking: Record<string, unknown>) {
-  await resend.emails.send({
+  await getResend().emails.send({
     from: 'Aquaductus <info@aquaductus.nl>',
     to: email,
     subject: 'Bevestiging van uw boeking bij Aquaductus',
@@ -94,7 +94,7 @@ async function stuurBevestigingsmail(email: string, boeking: Record<string, unkn
 }
 
 async function stuurAdminNotificatie(boeking: Record<string, unknown>) {
-  await resend.emails.send({
+  await getResend().emails.send({
     from: 'Aquaductus Systeem <info@aquaductus.nl>',
     to: ADMIN_EMAIL,
     subject: `Nieuwe boeking: ${boeking.gast_naam} — ${boeking.datum}`,
@@ -128,7 +128,7 @@ async function verwerkCadeaubonBetaling(session: import('stripe').Stripe.Checkou
     .single()
 
   if (data && data.ontvanger_email) {
-    await resend.emails.send({
+    await getResend().emails.send({
       from: 'Aquaductus <info@aquaductus.nl>',
       to: data.ontvanger_email,
       subject: `Een cadeaubon van Aquaductus voor ${data.ontvanger_naam}!`,

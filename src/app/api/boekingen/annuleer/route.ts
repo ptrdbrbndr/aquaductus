@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient, createAdminClient } from '@/lib/supabase/server'
-import { resend } from '@/lib/resend'
+import { getResend } from "@/lib/resend"
 import { ANNULERING_UREN_GRENS, ADMIN_EMAIL } from '@/lib/constants'
 
 export async function POST(request: NextRequest) {
@@ -48,7 +48,7 @@ export async function POST(request: NextRequest) {
 
     const email = boeking.gast_email ?? user.email
     if (email) {
-      await resend.emails.send({
+      await getResend().emails.send({
         from: 'Aquaductus <info@aquaductus.nl>',
         to: email,
         subject: 'Annulering van uw boeking',
@@ -56,7 +56,7 @@ export async function POST(request: NextRequest) {
       })
     }
 
-    await resend.emails.send({
+    await getResend().emails.send({
       from: 'Aquaductus Systeem <info@aquaductus.nl>',
       to: ADMIN_EMAIL,
       subject: `Boeking geannuleerd: ${boeking.gast_naam} — ${boeking.datum}`,

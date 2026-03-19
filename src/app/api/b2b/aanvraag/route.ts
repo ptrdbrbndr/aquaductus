@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { resend } from '@/lib/resend'
+import { getResend } from "@/lib/resend"
 import { ADMIN_EMAIL } from '@/lib/constants'
 
 export async function POST(request: NextRequest) {
@@ -11,7 +11,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ fout: 'Vul alle verplichte velden in.' }, { status: 400 })
     }
 
-    await resend.emails.send({
+    await getResend().emails.send({
       from: 'Aquaductus B2B <info@aquaductus.nl>',
       to: ADMIN_EMAIL,
       replyTo: email,
