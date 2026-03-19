@@ -3,3 +3,7 @@ serve.js
 node_modules/
 .DS_Store
 Thumbs.db
+.env.local
+.env*.local
+.vercel
+.next/
