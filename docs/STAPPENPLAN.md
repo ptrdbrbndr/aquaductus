@@ -4,6 +4,16 @@
 
 ---
 
+> **Doc-revalidatie — 2026-04-26.** Dit stappenplan was laatst bijgewerkt op 2026-03-19 (commit 87a37ed, "volledig Next.js platform fase 1-4 (boeken, portal, coaching, blog, B2B)"). Sindsdien:
+>
+> - Lazy-initialize Resend om build-time error te voorkomen (commit edb3347)
+> - Uniform `docs/`-subfolder scaffold (commit a24f769)
+> - Per `c:\Projecten\memory\MEMORY.md`: domein **gemigreerd naar mijn.host** (2026-04-26); Vercel-project + CF-zone staan in afbouw na 24u stabiliteits-verificatie ([project_vercel_cleanup_2026-04-27.md](../../../Users/piete/.claude/projects/c--Projecten/memory/project_vercel_cleanup_2026-04-27.md))
+>
+> Voor de hosting/infra-overgang zie ook `cyberductus.nl/docs/MIGRATIE-*` en de `agent-log/`-rapporten. Inhoudelijk is de productroadmap (Fase 0-4) nog leidend; bevestig per fase-stap via code-review of de gepushte features dekkend zijn vóór externe oplevering.
+
+---
+
 ## Fase 0 — Statische website (huidig)
 
 ### 0.1 Branding & design ✅
